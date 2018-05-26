@@ -1,0 +1,192 @@
+
+
+1. last element of list
+Sol: list=[1,2,2,3]
+     print(list[-1])
+   o/p=3
+
+2.Find the last but one element of a list.
+Sol: list=['hello','world','how','r','you']
+      print(list[-1])
+      o/p='you'
+
+3.Find the K'th element of a list.
+Sol: list=['X',['a','b','c','d','e'],3]
+      print(list[1][2])
+   o/p=c
+
+4Find the number of elements of a list.
+Sol:
+my_list = [1,2,3,3,3]
+print(len(my_list))
+o/p=5
+
+5.Reverse a list.
+Sol:
+mylist = [1,2,3,3,3]
+print mylist[::-1]
+
+o/p=[3, 3, 3, 2, 1]
+
+
+6.Flatten a nested list structure.
+Sol:
+import operator
+l = [[1,2,3],[4,5,6], [7], [8,9]]
+reduce(operator.concat, l)
+
+o/p=[1, 2, 3, 4, 5, 6, 7, 8, 9]
+
+
+7. Find out whether a list is a palindrome.
+Sol: 
+def reverse(list):
+    return list[::-1]
+ 
+def isPalindrome(list):
+ 
+    rev = reverse(list)
+
+    if (list == rev):
+        return True
+    return False
+
+list=[1,3,5,3,1]
+ans = isPalindrome(list)
+ 
+if ans == 1:
+    print("Pallindrome list")
+else:
+    print("Not a pallindrome list")
+
+o/p:Pallindrome list
+
+8. Eliminate consecutive duplicates of list elements.
+Sol:
+
+li=[12,3,3,3,3,4]
+output=[]
+
+for x in li:
+ if x not in output:
+    output.append(x)
+print (output)
+
+o/p=[12,3,4]
+
+9. Pack consecutive duplicates of list elements into sublists.
+Sol:
+from itertools import groupby
+N = ['a','a','a','b','b','c','c','c','d','d','d','d']
+print([list(j) for i, j in groupby(N)])
+
+O/P= [['a', 'a', 'a'], ['b', 'b'], ['c', 'c', 'c'], ['d', 'd', 'd', 'd']]
+   OR
+
+from collections import Counter 
+n = ['a','a','b','b','b','c','c','d','d','d','a']
+c=Counter(n)
+print[[k,]*v for k,v in c.items()]
+
+o/p:[['a', 'a', 'a'], ['c', 'c'], ['b', 'b', 'b'], ['d', 'd', 'd']]
+
+
+10.Run-length encoding of a list.
+Use the result of problem 1.09 to implement the so-called run-length encoding data compression method. Consecutive duplicates of elements are encoded as terms [N,E] where N is the number of duplicates of the element E.
+Sol:
+from collections import Counter 
+n = ['a','a','b','b','b','c','c','d','d','d','a']
+c=Counter(n)
+print[[v,k] for k,v in c.items()]
+
+o/p:[[3, 'a'], [2, 'c'], [3, 'b'], [3, 'd']]
+
+
+11.Modified run-length encoding.
+Modify the result of problem 1.10 in such a way that if an element has no duplicates it is simply copied into the result list. Only elements with duplicates are transferred as [N,E] terms.
+Sol:
+
+from itertools import groupby
+
+N = ['abc','abc','abcb','cde','cde','cde','d','efg','efg']
+new = []
+l = [list(group) for key, group in groupby(N)]
+for i in l:
+    cnt = 0
+    for j in i:
+        cnt += 1
+    lst = [j,cnt]
+    if cnt > 1:
+        new.append(lst)
+    else:
+        new.append(j)
+print new
+
+o/p=[['abc', 2], 'abcb', ['cde', 3], 'd', ['efg', 2]]
+
+
+12.Decode a run-length encoded list.
+Given a run-length code list generated as specified in problem 1.11. Construct its uncompressed version.
+Sol:
+
+from collections import Counter 
+n = ['a','a','b','b','b','c','c','d','d','d','a']
+c=Counter(n)
+print[[v,k] for k,v in c.items()]
+print[v*[k] for k,v in c.items()]
+
+o/p:[[3, 'a'], [2, 'c'], [3, 'b'], [3, 'd']]
+[['a', 'a', 'a'], ['c', 'c'], ['b', 'b', 'b'], ['d', 'd', 'd']]
+
+
+13. Run-length encoding of a list (direct solution).
+Implement the so-called run-length encoding data compression method directly. I.e. don't explicitly create the sublists containing the duplicates, as in problem 1.09, but only count them. As in problem 1.11, simplify the result list by replacing the singleton terms [1,X] by X.
+Sol:
+
+from itertools import groupby
+
+N = ['abc','abc','abcb','cde','cde','cde','d','efg','efg']
+new = []
+l = [list(group) for key, group in groupby(N)]
+for i in l:
+    cnt = 0
+    for j in i:
+        cnt += 1
+    if cnt > 1:
+        lst = [j,cnt]
+        new.append(lst)
+    else:
+        lst = [j]
+        new.append(lst)
+print new
+
+o/p=[['abc', 2], ['abcb'], ['cde', 3], ['d'], ['efg', 2]]
+
+
+
+14.Duplicate the elements of a list.
+Sol:
+pack=['a','a','a','a','b','c','c','a','a','d','e','e','e','e']
+x=[]
+
+for li in pack:
+  for r in range(2):
+       x.append(li)
+print(x)
+
+15.Duplicate the elements of a list a given number of times.
+Example:
+Sol:
+pack=['a','b','c','d','e']
+
+x=[]
+n=raw_input("Enter no of times you want repeatation:")
+
+for li in pack:
+  for r in range(int(n)):
+       x.append(li)
+print(x)
+
+
+
+
